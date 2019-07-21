@@ -3,10 +3,18 @@ services:
   database:
     image: mariadb
     restart: always
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: test123456
+      MYSQL_USER: datagrabber
+      MYSQL_PASSWORD: test123456
+      MYSQL_DATABASE: datagrabber
   grabber:
     build:
       context: .
+    links:
+     - database
     image: xgrabber
-    restart: always
+    command: tail -f /dev/null
+    tty: true

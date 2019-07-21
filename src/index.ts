@@ -2,7 +2,7 @@
  * @Author: Tim Koepsel 
  * @Date: 2019-07-21 16:55:53 
  * @Last Modified by: Tim Koepsel
- * @Last Modified time: 2019-07-21 23:40:34
+ * @Last Modified time: 2019-07-22 01:37:09
  */
 
 import * as config from "./config.json";
@@ -66,7 +66,17 @@ import { Debug } from "./debug";
 
     
      async Install() {
-        return await CoreData.QueryAsync(`CREATE TABLE IF NOT EXISTS \`datagrab\` (
+        await this.InstallDB();
+        await this.InstallTable();
+     }
+
+     async InstallDB() {
+        return await CoreData.QueryAsync('CREATE DATABASE IF NOT EXISTS `datagrabber`;');
+     }
+
+     async InstallTable() {
+        return await CoreData.QueryAsync(`
+        CREATE TABLE IF NOT EXISTS \`datagrab\` (
             \`Id\` int(11) NOT NULL AUTO_INCREMENT,
             \`CreatedAt\` datetime DEFAULT NULL,
             \`SourceUrl\` varchar(255) DEFAULT NULL,

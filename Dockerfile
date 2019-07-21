@@ -2,7 +2,8 @@ FROM ubuntu:18.04
 
 RUN apt-get update && apt-get upgrade -q -y && \
 apt-get install -q -y vim && \
-apt-get install -q -y nodejs
+apt-get install -q -y nodejs && \
+apt-get install -q -y cron
 
 RUN apt-get install -q -y npm && \
 npm -g install npm@latest && \
@@ -17,4 +18,4 @@ WORKDIR /datagrabber
 COPY ./docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
-ENTRYPOINT node index.js
+ENTRYPOINT bash /docker-entrypoint.sh && bash
