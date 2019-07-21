@@ -1,0 +1,11 @@
+{
+    "debug":true,
+    "database": {
+        "mysql": {
+            "host": "database",
+            "user": "root",
+            "password": "test123456",
+            "database": "datagrabber"
+        }
+    }
+}
