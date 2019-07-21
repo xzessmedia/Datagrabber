@@ -1,5 +1,4 @@
 #!/bin/sh
-echo Launching Datagrabber Instance
-cd / && mkdir logs
-touch /logs/server.log
-node /datagrabber/index.js | tee /logs/server.log
+
+# Add your crontabs here, copy example line and change target to your own ones
+echo "$(echo '* 1 * * * node /datagrabber/index.js --target=https://www.spiegel.de/schlagzeilen/index.rss' ; crontab -l)" | crontab 
